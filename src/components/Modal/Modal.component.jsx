@@ -28,11 +28,11 @@ const ModalBox = ( props ) =>
                 <h1 className="ModalHeader">{ props.h1Text }</h1>
                 <form>
                     <div>
-                        <label className="ModalLabel">{ props.minLabel }</label>
+                        <label for={ props.minInputId } className="ModalLabel">{ props.minLabel }</label>
                         <input className="ModalInput" type="number" id={ props.minInputId }></input>
                         <br></br>
                         <br></br>
-                        <label className="ModalLabel">{ props.maxLabel }</label>
+                        <label for={ props.maxInputId } className="ModalLabel">{ props.maxLabel }</label>
                         <input className="ModalInput" type="number" id={ props.maxInputId } ></input>
 
                     </div>

@@ -29,12 +29,14 @@ class App extends Component
     } );
   }
 
+  //function to change the state of the add modal 
   setModalIsOpenClose = () =>
   {
     var currentState = this.state.modelIsOpen;
     this.setState( { modelIsOpen: !currentState } );
   }
 
+  //function to change the state of the edit modal to true or false
   setEditModalIsOpenClose = (e) =>
   {
     var id = e.target.parentElement.parentElement.getAttribute( "id" );
@@ -54,11 +56,12 @@ class App extends Component
     this.setState( { modelEditIsOpen: !currentState } );
   }
 
+  //function when a new row has been added.
   onAddNewRow = () =>
   {
     var min = document.getElementById( "idModalAddMin" ).value;
     var max = document.getElementById( "idModalAddMax" ).value;
-
+    //validating the inputs
     var returnFromValidate = validateInputs( min, max );
     if(returnFromValidate){
       min = parseInt( min );
@@ -74,10 +77,11 @@ class App extends Component
     
   }
   
-
+  // when a new data is added from the modal
   addData = ( min, max, id ) =>
   {
     const { tableData } = this.state;
+    //if the table is empty
     if ( tableData.length === 0 )
     {
       if ( min !== 1 )
@@ -105,6 +109,7 @@ class App extends Component
       this.setState( { tableData: tableData } );
       return true;
     } else
+    //if not then add the data at the correct place to maintain the sort
     {
       var index = 0;
       for ( var i = 0; i < tableData.length; i++ )
@@ -117,6 +122,7 @@ class App extends Component
           break;
         }
       }
+      //calling the function to maintain the continuity
       var maintained = maintainData( tableData, index);
       if ( maintained )
       {
@@ -125,13 +131,14 @@ class App extends Component
       }
     }
   }
-
+  //function called when the submit is clicked on the edit modal
   onEditRow = () =>
   { 
     var min = document.getElementById( "idModalEditMin" ).value;
     var max = document.getElementById( "idModalEditMax" ).value;
 
     var returnFromValidate = validateInputs( min, max );
+    //replace the values of the edited values
     if ( returnFromValidate )
     {
       var { editRow, tableData } = this.state;
@@ -147,6 +154,7 @@ class App extends Component
           break;
         }
       }
+      //sorting the data as per the min in each element
       tableData.sort( ( a, b ) => { return a.min - b.min; } );
 
       for ( var j = 0; j < tableData.length; j++ )
@@ -157,7 +165,7 @@ class App extends Component
           break;
         }
       }
-
+      //calling the function to maintain the continuity
       var maintained = maintainData( tableData, index );
       if ( maintained )
       {
