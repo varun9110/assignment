@@ -218,7 +218,7 @@ class App extends Component
           <button className="buttonClass" type="button" onClick={this.setModalIsOpenClose}>Add</button>
           <Table 
             tableData={tableData}
-            headingColumns={['Name', 'Min', 'Max', 'Action']}
+            headingColumns={['Tier Name', 'Min', 'Max', 'Action']}
             title="Assignment Table"
             tdClick = {this.setEditModalIsOpenClose}
           />      
